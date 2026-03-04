@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)file:///Users/andrefmb/Downloads/roteiro_didatico_v5.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula 2 – Jornada Analítica: Transformando Dados em Decisões</title>
+<style>
+  :root { 
+    --red:#B50938;     /* Vermelho Insper */
+    --ink:#333;        /* Texto principal */
+    --bg:#f6f6f6;      /* Fundo */
+    --accent:#F15A22;  /* Laranja Insper */
+    --blue:#1b76d1;    /* Azul complementar */
+    --green:#16a34a;   /* Verde sucesso */
+    --yellow:#f59e0b;  /* Amarelo alerta */
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial; 
+    line-height:1.75; 
+    background:var(--bg); 
+    color:var(--ink); 
+    margin:0; 
+  }
+  
+  header { 
+    background:var(--red); 
+    color:#fff; 
+    padding:35px 20px; 
+    text-align:center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  header h1 {
+    color:#fff; 
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  
+  header .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.95;
+  }
+  
+  main { 
+    max-width: 1040px; 
+    margin: 30px auto; 
+    background:#fff; 
+    padding:35px; 
+    border-radius:12px; 
+    box-shadow:0 8px 24px rgba(0,0,0,.08); 
+  }
+  
+  h1,h2,h3 { color:var(--red); }
+  
+  h2 { 
+    border-bottom:3px solid var(--accent); 
+    padding-bottom:8px; 
+    margin-top:40px;
+    margin-bottom: 25px;
+    font-size: 1.7rem;
+  }
+  
+  h3 { 
+    margin-top:28px;
+    color: var(--red);
+    font-size: 1.3rem;
+  }
+  
+  h4 {
+    color: var(--ink);
+    margin-top: 20px;
+    margin-bottom: 12px;
+  }
+  
+  pre { 
+    background:#fafafa; 
+    border-left:4px solid var(--red); 
+    padding:15px; 
+    overflow-x:auto;
+    margin: 20px 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  code { 
+    color:#B50938;
+    background: #fff6f1;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.92rem;
+  }
+  
+  pre code {
+    background: none;
+    padding: 0;
+  }
+  
+  .block { 
+    background:#fff6f1; 
+    border-left:4px solid var(--accent); 
+    padding:15px 18px; 
+    border-radius:8px; 
+    margin:20px 0; 
+  }
+  
+  .concept { 
+    background:#eef7ff; 
+    border-left:4px solid #1b76d1; 
+    padding:15px 18px; 
+    border-radius:8px; 
+    margin:20px 0; 
+  }
+  
+  .concept strong:first-child {
+    color: #1b76d1;
+    font-size: 1.05rem;
+  }
+  
+  .warn { 
+    background:#fff0f2; 
+    border-left:4px solid var(--red); 
+    padding:15px 18px; 
+    border-radius:8px; 
+    margin:20px 0; 
+  }
+  
+  .warn strong:first-child {
+    color: var(--red);
+  }
+  
+  ul,ol { 
+    padding-left:25px;
+    margin: 15px 0;
+  }
+  
+  li {
+    margin: 8px 0;
+  }
+  
+  .step { 
+    border:1px solid #eee; 
+    border-radius:10px; 
+    padding:20px; 
+    margin:25px 0;
+    background: #fcfcfc;
+    transition: all 0.3s ease;
+  }
+  
+  .step:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+  
+  .kicker { 
+    font-size:.95rem; 
+    opacity:.9; 
+    margin-top:8px;
+    font-style: italic;
+  }
+  
+  /* Elementos narrativos */
+  .story-box {
+    background: linear-gradient(135deg, #fff6f1 0%, #ffe8df 100%);
+    border-left: 5px solid var(--accent);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 25px 0;
+    position: relative;
+  }
+  
+  .story-box:before {
+    content: '📖';
+    position: absolute;
+    top: 20px;
+    left: -15px;
+    background: white;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+  }
+  
+  .story-box h4 {
+    color: var(--accent);
+    margin-bottom: 12px;
+    margin-top: 0;
+  }
+  
+  .story-box em {
+    color: var(--ink);
+    font-style: italic;
+    display: block;
+    margin: 10px 0;
+    padding-left: 20px;
+    border-left: 3px solid var(--accent);
+    opacity: 0.9;
+  }
+  
+  /* Por que fazer */
+  .why-box {
+    background: #fef9f3;
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 18px;
+    margin: 20px 0;
+  }
+  
+  .why-box h4 {
+    color: var(--accent);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .why-box h4:before {
+    content: '🤔';
+  }
+  
+  /* Reflexão */
+  .reflection-box {
+    background: #f0f9ff;
+    border: 2px solid var(--blue);
+    border-radius: 10px;
+    padding: 18px;
+    margin: 20px 0;
+  }
+  
+  .reflection-box h4 {
+    color: var(--blue);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .reflection-box h4:before {
+    content: '💭';
+  }
+  
+  /* Insights */
+  .insight-box {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border-left: 4px solid var(--green);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  
+  .insight-box h4 {
+    color: var(--green);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .insight-box h4:before {
+    content: '💡';
+  }
+  
+  /* Armadilhas */
+  .trap-box {
+    background: #fff7ed;
+    border: 2px solid var(--yellow);
+    border-radius: 10px;
+    padding: 18px;
+    margin: 20px 0;
+  }
+  
+  .trap-box h4 {
+    color: var(--yellow);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .trap-box h4:before {
+    content: '⚠️';
+  }
+  
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+    margin: 30px 0;
+  }
+  
+  .timeline:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--red) 0%, var(--accent) 100%);
+  }
+  
+  .timeline-item {
+    position: relative;
+    margin: 25px 0;
+    padding: 15px;
+    background: #fcfcfc;
+    border-radius: 8px;
+    border: 1px solid #eee;
+  }
+  
+  .timeline-item:before {
+    content: '';
+    position: absolute;
+    left: -34px;
+    top: 20px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--red);
+    border: 3px solid white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  .timeline-item h4 {
+    color: var(--red);
+    margin: 0 0 10px 0;
+  }
+  
+  /* Desafios */
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+  }
+  
+  .challenge-card {
+    background: white;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .challenge-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--red) 0%, var(--accent) 100%);
+  }
+  
+  .challenge-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(241, 90, 34, 0.15);
+  }
+  
+  .challenge-card h5 {
+    color: var(--red);
+    margin: 0 0 12px 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .challenge-card h5:before {
+    content: '🚀';
+  }
+  
+  .challenge-level {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .challenge-hint {
+    background: #f8f9fa;
+    border-left: 3px solid var(--accent);
+    padding: 10px;
+    margin: 15px 0 10px 0;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .challenge-hint strong {
+    color: var(--accent);
+  }
+  
+  .challenge-reflection {
+    background: #fff6f1;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 12px;
+    font-size: 0.92rem;
+    color: var(--ink);
+    font-style: italic;
+  }
+  
+  .challenge-reflection strong {
+    color: var(--red);
+  }
+  
+  /* Reference Box */
+  .reference-box {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+  }
+  
+  .reference-box h3 {
+    color: var(--ink);
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .function-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+  }
+  
+  .function-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+  }
+  
+  .function-item code {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .function-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  /* Code annotations */
+  .code-annotation {
+    background: #fef3c7;
+    border-left: 4px solid var(--yellow);
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 0.95rem;
+  }
+  
+  /* Code explanation */
+  .code-explain {
+    background: #f0f9ff;
+    border: 1px solid var(--blue);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    font-size: 0.95rem;
+  }
+  
+  .code-explain h5 {
+    color: var(--blue);
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    main {
+      padding: 20px;
+      margin: 20px 10px;
+    }
+    
+    .challenge-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    h2 {
+      font-size: 1.4rem;
+    }
+    
+    header h1 {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🚀 Jornada Analítica com Dados Reais do Brasil</h1>
+  <p class="subtitle">Transformando números em insights acionáveis com Pandas &amp; Matplotlib</p>
+  <p class="subtitle">📅 Aula 2 | Ciência dos Dados para a Computação | 14 de Agosto de 2025</p>
+</header>
+
+<main>
+
+<div class="story-box">
+  <h4>A História Começa Aqui...</h4>
+  <p>Imagine que você acabou de ser contratado como <strong>Analista de Dados</strong> pela Secretaria de Saúde. É segunda-feira, 8h da manhã. Seu chefe entra na sala com uma expressão preocupada:</p>
+  <em>"Precisamos entender o que está acontecendo com os números da pandemia. Os governadores querem respostas: Qual estado está em situação mais crítica? As ondas estão sincronizadas? Podemos prever o que vem por aí?"</em>
+  <p>Ele deixa uma pasta na sua mesa com apenas dois links para datasets. <strong>É hora de transformar dados brutos em inteligência para salvar vidas.<p> É importante que você aproveite os comandos apresentados nesse roteiro e tenha por objetivo compreender o que cada um dele está fazendo e como isso está transformando seus dados. Não apenas copie-e-cole, mas olhe cada comando, questione, modifique algo, busque compreender a lógica de trabalho com dados. Nas próximas aulas iremos usar muitos deles, aumentando a sua familiaridade com esses comandos e suas funções.
+</p></strong></p>
+</div>
+
+<h2>🎯 Parte 1: O Desafio Real</h2>
+
+<div class="concept">
+  <strong>O Problema que Vamos Resolver</strong>
+  <p>Dados brutos são como ingredientes na cozinha - sozinhos, não fazem um prato. Precisamos:</p>
+  <ol>
+    <li><strong>Comparar o incomparável:</strong> Como comparar São Paulo (46 milhões hab.) com Roraima (600 mil hab.)?</li>
+    <li><strong>Enxergar através do ruído:</strong> Números diários oscilam muito - como ver a tendência real?</li>
+    <li><strong>Identificar padrões:</strong> Existe sazonalidade? Estados vizinhos se comportam de forma similar?</li>
+    <li><strong>Priorizar ações:</strong> Onde a situação está piorando? Onde está melhorando?</li>
+  </ol>
+</div>
+
+<div class="why-box">
+  <h4>Por Que Isso Importa?</h4>
+  <p>Suas análises vão influenciar decisões críticas:</p>
+  <ul>
+    <li>📍 Onde enviar respiradores e equipamentos</li>
+    <li>🏥 Quais hospitais precisam de mais leitos</li>
+    <li>💉 Priorização de campanhas de vacinação</li>
+    <li>📊 Como comunicar riscos à população</li>
+  </ul>
+  <p><strong>Cada linha de código pode impactar milhares de vidas.</strong></p>
+</div>
+
+<h2>🧭 Parte 2: Conceitos Fundamentais</h2>
+
+<div class="timeline">
+  <div class="timeline-item">
+    <h4>📊 Série Temporal</h4>
+    <p>Dados organizados no tempo revelam <strong>tendências</strong> e <strong>sazonalidades</strong>. É como assistir um filme em vez de ver apenas uma foto - você entende a história completa.</p>
+  </div>
+  
+  <div class="timeline-item">
+    <h4>🔗 Merge (Junção de Dados)</h4>
+    <p>Combinar informações de diferentes fontes. Como juntar peças de um quebra-cabeça - cada tabela tem uma parte da informação que precisamos.</p>
+  </div>
+  
+  <div class="timeline-item">
+    <h4>⚖️ Normalização</h4>
+    <p>Tornar dados comparáveis ajustando pela população. É como converter todas as moedas para Real antes de comparar preços - sem isso, a comparação não faz sentido.</p>
+  </div>
+  
+  <div class="timeline-item">
+    <h4>📈 Média Móvel</h4>
+    <p>Suavizar oscilações diárias para revelar tendências. Como o filtro de suavização em fotos - remove o "ruído" e mostra o padrão principal.</p>
+  </div>
+</div>
+
+<h2>🛠️ Parte 3: Construindo Nossa Análise</h2>
+
+<div class="step">
+  <h3>Etapa 1: Preparando o Ambiente de Trabalho</h3>
+  
+  <div class="story-box">
+    <h4>Contexto Real</h4>
+    <p>Antes de analisar dados, precisamos das ferramentas certas. É como um médico preparando seus instrumentos antes da cirurgia - cada ferramenta tem sua função específica.</p>
+  </div>
+  
+  <h4>Por que fazer:</h4>
+  <p>Sem as bibliotecas adequadas, ficaríamos limitados a cálculos manuais e gráficos improvisados, perdendo tempo e precisão.</p>
+  
+  <h4>Comandos que você vai usar:</h4>
+  <pre><code># Instalando as ferramentas essenciais
+!pip install pandas matplotlib numpy
+
+# Importando as bibliotecas
+import pandas as pd          # Para manipular tabelas de dados
+import numpy as np           # Para cálculos matemáticos
+import matplotlib.pyplot as plt  # Para criar visualizações
+
+# Configuração para melhor visualização
+pd.options.display.float_format = '{:,.2f}'.format
+
+print("✅ Ambiente preparado! Vamos começar a análise.")</code></pre>
+  
+  <div class="code-annotation">
+    💡 <strong>Dica:</strong> Se aparecer "ModuleNotFoundError", rode o pip install novamente. Isso é normal na primeira vez!
+  </div>
+  
+  <div class="reflection-box">
+    <h4>Para Refletir</h4>
+    <p>Por que precisamos de três bibliotecas diferentes? Pense em cada uma como um especialista: pandas organiza dados, numpy calcula, matplotlib visualiza. Juntas, formam sua equipe analítica!</p>
+  </div>
+</div>
+
+<div class="step">
+  <h3>Etapa 2: Carregando os Dados de Casos e População</h3>
+  
+  <div class="story-box">
+    <h4>Contexto Real</h4>
+    <p>Vamos buscar dados de três fontes diferentes: casos/óbitos da pandemia e população do IBGE. É como montar um quebra-cabeça - precisamos de todas as peças!</p>
+  </div>
+  
+  <h4>Por que fazer:</h4>
+  <p>Os dados do IBGE são oficiais e atualizados (Censo 2022). Precisamos conectar códigos de UF com siglas para fazer a análise completa.</p>
+  
+  <h4>Comandos que você vai usar:</h4>
+  <pre><code># 1) Dados de casos e óbitos
+url_casos = "https://raw.githubusercontent.com/wcota/covid19br/master/cases-brazil-states.csv"
+print("📥 Baixando dados de casos e óbitos...")
+df = pd.read_csv(url_casos, parse_dates=["date"])
+
+# Padronizando nomes das colunas
+df = df.rename(columns={
+    "state": "uf",
+    "newCases": "novos_casos", 
+    "newDeaths": "novos_obitos"
+})
+
+# Removendo dados agregados nacionais
+df = df[df["uf"] != "TOTAL"]
+
+print(f"✅ Dados de casos carregados!")
+print(f"   • {len(df):,} linhas de dados")
+print(f"   • {df['uf'].nunique()-1} estados + DF")
+print(f"   • Período: {df['date'].min().date()} até {df['date'].max().date()}")
+
+# 2) População por UF — Censo 2022 (SIDRA tabela 4714)
+print("\n📥 Buscando população do IBGE (Censo 2022)...")
+url_pop = "https://apisidra.ibge.gov.br/values/t/4714/p/2022/n3/all/v/93?formato=json"
+pop = pd.read_json(url_pop)
+
+# A primeira linha do SIDRA é metadado; removemos com iloc[1:]
+pop = pop.rename(columns={"D2C": "uf_cod", "D2N": "uf_nome", "V": "populacao"}).iloc[1:]
+
+# Garantindo tipos numéricos corretos
+pop["uf_cod"] = pd.to_numeric(pop["uf_cod"], errors="coerce").astype("Int64")
+pop["populacao"] = pd.to_numeric(pop["populacao"], errors="coerce").astype("Int64")
+
+print(f"✅ População carregada: {len(pop)} UFs")
+
+# 3) Mapa de códigos para siglas de UF
+print("\n📥 Buscando códigos e siglas das UFs...")
+url_ufs = "https://servicodados.ibge.gov.br/api/v1/localidades/estados"
+ufs = pd.read_json(url_ufs)[["id", "sigla", "nome"]].rename(
+    columns={"id": "uf_cod", "sigla": "uf", "nome": "uf_nome"}
+)
+ufs["uf_cod"] = ufs["uf_cod"].astype("Int64")
+
+# 4) Une população (por código) com sigla de UF
+pop = pop.merge(ufs[["uf_cod", "uf"]], on="uf_cod", how="left")
+pop = pop[["uf_cod", "uf", "uf_nome", "populacao"]]
+
+print("✅ Dados prontos para análise!")</code></pre>
+  
+  <div class="code-explain">
+    <h5>📚 O que estamos fazendo aqui?</h5>
+    <p><strong>1. API SIDRA do IBGE:</strong> Acessamos diretamente os dados oficiais do Censo 2022. A tabela 4714 contém população por estado.</p>
+    <p><strong>2. Códigos IBGE:</strong> Cada estado tem um código (ex: SP = 35, RJ = 33). Precisamos converter para siglas.</p>
+    <p><strong>3. Três merges:</strong> Conectamos códigos → siglas → dados de casos. É como ligar pontos para formar uma imagem.</p>
+  </div>
+  
+  <div class="trap-box">
+    <h4>Armadilha Comum</h4>
+    <p>O SIDRA retorna a primeira linha como metadado! Por isso usamos <code>iloc[1:]</code>. Sempre verifique seus dados após carregar!</p>
+  </div>
+</div>
+
+<div class="step">
+  <h3>Etapa 3: Unindo Dados com Merge</h3>
+  
+  <div class="story-box">
+    <h4>Contexto Real</h4>
+    <p>Agora temos casos em uma tabela e população em outra. Precisamos unir tudo para calcular taxas por habitante!</p>
+  </div>
+  
+  <h4>Por que fazer:</h4>
+  <p>Sem unir população aos casos, é impossível normalizar. Seria como comparar vendas sem saber o tamanho das lojas.</p>
+  
+  <h4>Comandos que você vai usar:</h4>
+  <pre><code># Fazendo o merge - como um PROCV do Excel
+print("🔗 Unindo dados de casos com população...")
+df = df.merge(pop[["uf", "populacao"]], on="uf", how="left")
+
+# Verificando o resultado
+print("\n✅ Merge concluído! Vamos ver um exemplo:")
+exemplo = df[df["uf"] == "SP"].iloc[0]
+print(f"   São Paulo em {exemplo['date'].date()}:")
+print(f"   • Novos casos: {exemplo['novos_casos']:,.0f}")
+print(f"   • População: {exemplo['populacao']:,.0f}")
+print(f"   • Agora podemos calcular casos per capita!")
+
+# Limpeza de dados
+df["populacao"] = df["populacao"].replace(0, np.nan)
+df["novos_casos"] = df["novos_casos"].clip(lower=0).fillna(0)
+df["novos_obitos"] = df["novos_obitos"].clip(lower=0).fillna(0)</code></pre>
+  
+  <div class="reflection-box">
+    <h4>Para Refletir</h4>
+    <p>O merge é como construir uma ponte entre duas ilhas de informação. Qual é a "chave" que conecta as duas tabelas? (Resposta: a coluna 'uf')</p>
+  </div>
+</div>
+
+<div class="step">
+  <h3>Etapa 4: Criando Indicadores Comparáveis</h3>
+  
+  <div class="story-box">
+    <h4>Contexto Real</h4>
+    <p>Vamos escolher um dia com muitos casos para demonstrar a importância da normalização!</p>
+  </div>
+  
+  <h4>Por que fazer:</h4>
+  <p>Normalizar por população é essencial para comparações justas. É a diferença entre pânico desnecessário e ação direcionada.</p>
+  
+  <h4>Comandos que você vai usar:</h4>
+  <pre><code># Criando taxas por 100 mil habitantes
+print("📊 Normalizando dados pela população...")
+df["casos_100k"] = (df["novos_casos"] / df["populacao"]) * 100_000
+df["obitos_100k"] = (df["novos_obitos"] / df["populacao"]) * 100_000
+
+# Encontrando um dia com muitos casos para comparação
+# Vamos pegar um dia próximo ao pico da segunda onda (março/2021)
+data_exemplo = pd.to_datetime("2021-03-15")
+exemplo_dia = df[df["date"] == data_exemplo]
+
+print(f"\n🔍 Comparação reveladora (dados de {data_exemplo.date()}):")
+print("\n" + "="*60)
+print(f"{'UF':&lt;4} {'População':&gt;12} {'Casos Brutos':&gt;12} {'Casos/100k':&gt;12}")
+print("-"*60)
+
+for uf in ["SP", "RR", "AM", "DF"]:
+    dados = exemplo_dia[exemplo_dia["uf"] == uf]
+    if not dados.empty:
+        dados = dados.iloc[0]
+        print(f"{uf:&lt;4} {dados['populacao']:&gt;12,.0f} {dados['novos_casos']:&gt;12,.0f} {dados['casos_100k']:&gt;12.1f}")
+
+print("\n💡 Viu a diferença? AM e RR tinham situação muito mais crítica que SP!")</code></pre>
+  
+  <div class="insight-box">
+    <h4>Momento "Eureka!"</h4>
+    <p>A normalização revela a verdade escondida nos números. Estados menores podem estar em situação muito mais crítica mesmo com menos casos absolutos!</p>
+  </div>
+</div>
+
+<div class="step">
+  <h3>Etapa 5: Suavizando com Média Móvel e Visualizando</h3>
+  
+  <div class="story-box">
+    <h4>Contexto Real</h4>
+    <p>Vamos ver graficamente como a média móvel transforma dados caóticos em tendências claras!</p>
+  </div>
+  
+  <h4>Por que fazer:</h4>
+  <p>A média móvel remove o ruído semanal (fins de semana com subnotificação) e revela a tendência real.</p>
+  
+  <h4>Comandos que você vai usar:</h4>
+  <pre><code># Ordenando por UF e data (essencial!)
+df = df.sort_values(["uf", "date"])
+
+# Calculando média móvel de 7 dias
+print("📈 Calculando médias móveis...")
+df["mm7_casos_100k"] = (df.groupby("uf")["casos_100k"]
+                          .transform(lambda x: x.rolling(7, min_periods=1).mean()))
+
+df["mm7_obitos_100k"] = (df.groupby("uf")["obitos_100k"]
+                           .transform(lambda x: x.rolling(7, min_periods=1).mean()))
+
+# Criando visualização comparativa: dados brutos vs média móvel
+print("\n📊 Gerando gráfico comparativo...")
+
+# Escolhendo um estado e período para demonstrar
+uf_demo = "RJ"
+inicio = pd.to_datetime("2021-02-01")
+fim = pd.to_datetime("2021-04-30")
+
+dados_demo = df[(df["uf"] == uf_demo) &amp; 
+                 (df["date"] &gt;= inicio) &amp; 
+                 (df["date"] &lt;= fim)]
+
+# Criando o gráfico
+fig, ax = plt.subplots(figsize=(14, 6))
+
+# Dados diários (com transparência)
+ax.plot(dados_demo["date"], dados_demo["casos_100k"], 
+        label="Dados diários", color="#F15A22", alpha=0.4, linewidth=1)
+
+# Média móvel (linha sólida)
+ax.plot(dados_demo["date"], dados_demo["mm7_casos_100k"], 
+        label="Média móvel 7 dias", color="#B50938", linewidth=2.5)
+
+ax.set_title(f"Efeito da Média Móvel - {uf_demo} (Fev-Abr 2021)", 
+             fontsize=14, fontweight='bold')
+ax.set_xlabel("Data", fontsize=12)
+ax.set_ylabel("Casos por 100 mil habitantes", fontsize=12)
+ax.legend(loc='upper left', frameon=True, shadow=True)
+ax.grid(True, alpha=0.3)
+
+# Anotação explicativa
+ax.annotate('Oscilações diárias\n(ruído)', 
+            xy=(dados_demo.iloc[20]['date'], dados_demo.iloc[20]['casos_100k']),
+            xytext=(dados_demo.iloc[20]['date'], dados_demo.iloc[20]['casos_100k'] + 20),
+            arrowprops=dict(arrowstyle='-&gt;', color='gray', alpha=0.5),
+            fontsize=10, color='gray')
+
+ax.annotate('Tendência clara\n(média móvel)', 
+            xy=(dados_demo.iloc[40]['date'], dados_demo.iloc[40]['mm7_casos_100k']),
+            xytext=(dados_demo.iloc[40]['date'], dados_demo.iloc[40]['mm7_casos_100k'] - 25),
+            arrowprops=dict(arrowstyle='-&gt;', color='#B50938', alpha=0.7),
+            fontsize=10, color='#B50938')
+
+plt.tight_layout()
+plt.show()
+
+print("\n💡 Veja como a média móvel revela a tendência real!")</code></pre>
+  
+  <div class="trap-box">
+    <h4>Armadilha Comum</h4>
+    <p>Esquecer de ordenar por data antes do rolling() mistura dias aleatórios na média! Sempre use <code>sort_values()</code> primeiro.</p>
+  </div>
+</div>
+
+<div class="step">
+  <h3>Etapa 6: Visualizações Avançadas</h3>
+  
+  <h4>6.1 Comparando Trajetórias de Estados</h4>
+  <pre><code># Comparando 3 estados
+estados = ["SP", "RJ", "MG"]
+cores = ["#B50938", "#F15A22", "#1b76d1"]  # Cores Insper + azul
+
+fig, ax = plt.subplots(figsize=(12, 6))
+for estado, cor in zip(estados, cores):
+    dados = df[df["uf"] == estado]
+    ax.plot(dados["date"], dados["mm7_casos_100k"], 
+            label=estado, color=cor, linewidth=2)
+
+ax.set_title("Evolução de Casos por 100 mil hab (MM7)", fontsize=14, fontweight='bold')
+ax.set_xlabel("Data")
+ax.set_ylabel("Casos por 100 mil habitantes")
+ax.legend()
+ax.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()</code></pre>
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+<h2>🎯 Parte 4: Desafios Práticos</h2>
+
+<div class="challenge-grid">
+  <div class="challenge-card">
+    <h5>Desafio 1: Janela Diferente</h5>
+    <span class="challenge-level">BÁSICO</span>
+    <p>Calcule a média móvel de 14 dias e compare com a de 7 dias.</p>
+    
+    <div class="challenge-hint">
+      <strong>Dica:</strong> Use <code>rolling(14)</code> em vez de <code>rolling(7)</code>. Plote ambas no mesmo gráfico com cores diferentes.
+    </div>
+    
+    <div class="challenge-reflection">
+      <strong>Para refletir:</strong> Qual janela é melhor para decisões de curto prazo? E para entender tendências de longo prazo? Por que a janela de 14 dias fica "atrasada" em relação aos eventos?
+    </div>
+  </div>
+  
+  <div class="challenge-card">
+    <h5>Desafio 2: Momento Crítico</h5>
+    <span class="challenge-level">INTERMEDIÁRIO</span>
+    <p>Encontre a data exata do pico de cada estado.</p>
+    
+    <div class="challenge-hint">
+      <strong>Dica:</strong> Use <code>idxmax()</code> para encontrar o índice do máximo, depois use <code>loc[]</code> para pegar a data correspondente.
+    </div>
+    
+    <div class="challenge-reflection">
+      <strong>Para refletir:</strong> Os estados vizinhos tiveram picos em datas próximas? O que isso sugere sobre a propagação geográfica? Como você usaria essa informação para planejar recursos?
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+<h2>📚 Referência Rápida: Principais Funções</h2>
+
+<div class="reference-box">
+  <h3>🔧 Caixa de Ferramentas do Analista</h3>
+  
+  <div class="function-grid">
+    <div class="function-item">
+      <code>pd.read_csv()</code>
+      <p>Lê arquivo CSV. Use parse_dates para datas.</p>
+    </div>
+    
+    <div class="function-item">
+      <code>pd.read_json()</code>
+      <p>Lê dados JSON de APIs como IBGE.</p>
+    </div>
+    
+    <div class="function-item">
+      <code>df.merge()</code>
+      <p>Une tabelas por coluna comum (como PROCV).</p>
+    </div>
+    
+    <div class="function-item">
+      <code>df.groupby()</code>
+      <p>Agrupa dados por categoria para análises.</p>
+    </div>
+    
+    <div class="function-item">
+      <code>rolling()</code>
+      <p>Calcula médias móveis e outras janelas.</p>
+    </div>
+    
+    <div class="function-item">
+      <code>sort_values()</code>
+      <p>Ordena dados por uma ou mais colunas.</p>
+    </div>
+    
+    <div class="function-item">
+      <code>clip()</code>
+      <p>Limita valores (ex: negativos viram 0).</p>
+    </div>
+    
+    <div class="function-item">
+      <code>fillna()</code>
+      <p>Preenche valores ausentes (NaN).</p>
+    </div>
+    
+    <div class="function-item">
+      <code>to_numeric()</code>
+      <p>Converte texto em números.</p>
+    </div>
+    
+    <div class="function-item">
+      <code>plt.plot()</code>
+      <p>Cria gráficos de linha.</p>
+    </div>
+    
+    <div class="function-item">
+      <code>plt.barh()</code>
+      <p>Cria gráficos de barras horizontais.</p>
+    </div>
+    
+    <div class="function-item">
+      <code>iloc[]</code>
+      <p>Seleciona linhas por posição (índice).</p>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="reflection-box">
+  <h4>O Que Você Construiu Hoje</h4>
+  <p>Você não apenas escreveu código. Você desenvolveu:</p>
+  <ul>
+    <li>✅ <strong>Pensamento analítico:</strong> transformar perguntas de negócio em código</li>
+    <li>✅ <strong>Senso crítico:</strong> questionar números, não apenas calculá-los</li>
+    <li>✅ <strong>Visão sistêmica:</strong> entender como diferentes métricas se relacionam</li>
+    <li>✅ <strong>Comunicação visual:</strong> escolher o gráfico certo para cada mensagem</li>
+  </ul>
+</div>
+
+<div class="warn">
+  <strong>Lembre-se Sempre:</strong> Por trás de cada número há pessoas reais, famílias, histórias. Use suas habilidades analíticas com responsabilidade e empatia. Dados salvam vidas quando bem utilizados.
+</div>
+
+<div class="story-box">
+  <h4>O Fim do Primeiro Dia</h4>
+  <p>São 18h. Seu chefe retorna à sala:</p>
+  <em>"Excelente trabalho! Conseguimos identificar os estados prioritários e o Ministério já está realocando recursos. Sua análise clara e objetiva fez a diferença. Amanhã temos novo desafio: prever a demanda de leitos para as próximas semanas. Está pronto?"</em>
+  <p><strong>E assim continua sua jornada como cientista de dados... 🚀</strong></p>
+</div>
+
+</main>
+
+</body></html>
